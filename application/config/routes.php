@@ -60,5 +60,14 @@ $route['logout'] = 'Auth_Controller/logout';
 $route['authenticate_driver'] = 'Auth_Controller/login_auth';
 $route['register'] = 'Auth_Controller/register';
 
+// Driver Routes
+$route['drivers'] = 'Driver_Controller/index';
+$route['driver_details/(:any)'] = 'Driver_Controller/driver_details/$1';
+$route['driver/get_jobs'] = 'Driver_Controller/get_jobs';
+
+// Driver Routes
+$route['requests'] = 'Request_Controller/index';
+
+
 $route['404_override'] = 'fallback_controller/not_found_fzf';
 $route['translate_uri_dashes'] = FALSE;

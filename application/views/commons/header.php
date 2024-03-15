@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title><?= $title ?? "Driver Scot" ?></title>
+    <title><?= $page_title ?? "Driver Scot" ?></title>
 
     <meta name="description" content="" />
     <link rel="icon" type="image/x-icon" href="<?= base_url('assets/img/favicon/favicon.ico') ?>" />
@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/demo.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/apex-charts/apex-charts.css') ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/spinkit/spinkit.css') ?>" />
+    <script src="<?= base_url('assets/vendor/libs/jquery/jquery.js') ?>"></script>
     <script src="<?= base_url('assets/vendor/js/helpers.js') ?>"></script>
     <script src="<?= base_url('assets/js/config.js') ?>"></script>
     <script>
@@ -29,4 +31,5 @@
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
+            <div class="spinner-grow text-primary" id="ajax_loader" style=" display:none; position: absolute;top: 25px;right: 40px;" role="status"></div>
             <!-- Menu -->
