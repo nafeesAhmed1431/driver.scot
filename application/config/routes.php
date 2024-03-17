@@ -59,6 +59,8 @@ $route['login'] = 'Auth_Controller/login';
 $route['logout'] = 'Auth_Controller/logout';
 $route['authenticate_driver'] = 'Auth_Controller/login_auth';
 $route['register'] = 'Auth_Controller/register';
+$route['driver_app_auth/(:any)'] = 'Auth_Controller/app_login/$1';
+$route['app_auth'] = 'Auth_Controller/app_auth';
 
 // Driver Routes
 $route['drivers'] = 'Driver_Controller/index';

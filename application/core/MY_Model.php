@@ -14,9 +14,9 @@ class MY_Model extends CI_Model
         $this->table = $table_name;
     }
 
-    function row($where)
+    public function row($where, $table = null)
     {
-        return $this->db->where($where)->get($this->table)->row();
+        return $this->db->where($where)->get($table ?? $this->table)->row();
     }
 
     function where($where)
@@ -68,9 +68,9 @@ class MY_Model extends CI_Model
         return $id ? $this->db->insert_id() : $st;
     }
 
-    function update($data, $where)
+    function update($data, $where, $table = null)
     {
-        return $this->db->update($this->table, $data, $where);
+        return $this->db->update($table ?? $this->table, $data, $where);
     }
 
     function delete($data)

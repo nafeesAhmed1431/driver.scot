@@ -33,6 +33,11 @@ class Auth_Controller extends CI_Controller
         $this->load_view('login');
     }
 
+    public function app_login($token)
+    {
+        $this->load_view('app_login', ['token' => $token]);
+    }
+
     public function login_auth()
     {
         $email = $this->input->post('email');
@@ -41,7 +46,11 @@ class Auth_Controller extends CI_Controller
         if ($this->form_validation->run('auth/login')) {
             $res = $this->auth->authenticate($email, $password);
             if ($res['status']) {
-                echo json_encode(['status' => login($res['user']), 'redirect_url' => base_url('dashboard')]);
+                $login = login($res['user']);
+                if ($login) {
+                    $this->auth->update(['is_expired' => 1],[],[]);
+                }
+                echo json_encode(['status' => $login, 'redirect_url' => base_url('dashboard')]);
             } else {
                 echo json_encode($res);
             }
@@ -49,6 +58,20 @@ class Auth_Controller extends CI_Controller
             echo json_encode(['status' => false, 'error' => $this->form_validation->error_array()]);
         }
     }
+
+    public function app_auth()
+    {
+        $token = $this->input->post('token');
+        $res = $this->auth->authenticate_by_token($token);
+        sleep(10);
+        if ($res['status']) {
+            echo json_encode(['status' => login($res['user']), 'redirect_url' => base_url('dashboard')]);
+        } else {
+            echo json_encode($res);
+        }
+    }
+
+
 
     public function register()
     {

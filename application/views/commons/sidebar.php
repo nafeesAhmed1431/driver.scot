@@ -1,3 +1,4 @@
+<?php $slug = $this->uri->segment(1); ?>
 <!-- Menu -->
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
@@ -87,12 +88,7 @@
 <!-- / Menu -->
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var currentUrl = window.location.href;
-        var slug = currentUrl.split('/').pop().split('.')[0];
-        var targetElement = document.getElementById(slug);
-        if (targetElement) {
-            targetElement.classList.add('active');
-        }
+    $(function() {
+        $('#<?= $slug ?>').addClass('active');
     });
 </script>
