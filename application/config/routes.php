@@ -64,9 +64,20 @@ $route['register'] = 'Auth_Controller/register';
 $route['drivers'] = 'Driver_Controller/index';
 $route['driver_details/(:any)'] = 'Driver_Controller/driver_details/$1';
 $route['driver/get_jobs'] = 'Driver_Controller/get_jobs';
+$route['driver_details_modal'] = 'Driver_Controller/driver_details_modal';
 
-// Driver Routes
+// Request Routes
 $route['requests'] = 'Request_Controller/index';
+
+// Invitations Routes
+$route['invitations'] = 'Invitation_Controller/index';
+
+// Payments Routes
+$route['payments'] = 'Payment_Controller/index';
+
+// Orders Routes
+$route['order_details_modal'] = 'Order_Controller/order_details_modal';
+
 
 
 $route['404_override'] = 'fallback_controller/not_found_fzf';

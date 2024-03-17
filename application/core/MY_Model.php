@@ -9,37 +9,37 @@ class MY_Model extends CI_Model
         parent::__construct();
     }
 
-    public function set_table($table_name)
+    function set_table($table_name)
     {
         $this->table = $table_name;
     }
 
-    public function row($where)
+    function row($where)
     {
         return $this->db->where($where)->get($this->table)->row();
     }
 
-    public function where($where)
+    function where($where)
     {
         return $this->db->where($where)->get($this->table)->result();
     }
 
-    public function where_select($where, $select = "*")
+    function where_select($where, $select = "*")
     {
         return $this->db->select($select)->where($where)->get($this->table)->result();
     }
 
-    public function all()
+    function all()
     {
         return $this->db->get($this->table)->result();
     }
 
-    public function select($select = "*")
+    function select($select = "*")
     {
         return $this->db->select($select)->get($this->table)->result();
     }
 
-    public function get($data)
+    function get($data)
     {
         return $this->db->where(gettype($data) == "string" ? ['id' => $data] : $data)
             ->get($this->table)
@@ -47,7 +47,7 @@ class MY_Model extends CI_Model
     }
 
 
-    public function get_options($select = '*', $where = null, $limit = null, $offset = null, $order_by = null)
+    function get_options($select = '*', $where = null, $limit = null, $offset = null, $order_by = null)
     {
         $this->db->select($select);
         if ($where !== null) {
@@ -62,24 +62,24 @@ class MY_Model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
-    public function insert($data, $id = false)
+    function insert($data, $id = false)
     {
         $st = $this->db->insert($this->table, $data);
         return $id ? $this->db->insert_id() : $st;
     }
 
-    public function update($data, $where)
+    function update($data, $where)
     {
         return $this->db->update($this->table, $data, $where);
     }
 
-    public function delete($data)
+    function delete($data)
     {
         return $this->db->delete($this->table, is_string($data) ? ['id' => $data] : $data);
     }
 
 
-    public function count($where = null)
+    function count($where = null)
     {
         if ($where !== null) {
             $this->db->where($where);
@@ -87,46 +87,59 @@ class MY_Model extends CI_Model
         return $this->db->count_all_results($this->table);
     }
 
-    public function like($field, $value, $position = 'both')
+    function like($field, $value, $position = 'both')
     {
         $this->db->like($field, $value, $position);
         return $this->db->get($this->table)->result();
     }
 
-    public function not_like($field, $value, $position = 'both')
+    function not_like($field, $value, $position = 'both')
     {
         $this->db->not_like($field, $value, $position);
         return $this->db->get($this->table)->result();
     }
 
-    public function or_like($field, $value, $position = 'both')
+    function or_like($field, $value, $position = 'both')
     {
         $this->db->or_like($field, $value, $position);
         return $this->db->get($this->table)->result();
     }
 
-    public function or_not_like($field, $value, $position = 'both')
+    function or_not_like($field, $value, $position = 'both')
     {
         $this->db->or_not_like($field, $value, $position);
         return $this->db->get($this->table)->result();
     }
 
-    public function group_by($field)
+    function group_by($field)
     {
         $this->db->group_by($field);
         return $this->db->get($this->table)->result();
     }
 
-    public function having($having)
+    function having($having)
     {
         $this->db->having($having);
         return $this->db->get($this->table)->result();
     }
 
-    public function distinct($field)
+    function distinct($field)
     {
         $this->db->distinct();
         $this->db->select($field);
         return $this->db->get($this->table)->result();
+    }
+
+    function select_where_join($select = [], $where = [], $joins = null)
+    {
+        $this->db->select($select);
+        $this->db->where($where);
+        $this->db->from($this->table);
+        if ($joins) {
+            foreach ($joins as $join)
+                $this->db->join($join['table'], $join['condition'], $join['type']);
+        }
+        $res = $this->db->get();
+        return $res ? $res->result() : false;
     }
 }

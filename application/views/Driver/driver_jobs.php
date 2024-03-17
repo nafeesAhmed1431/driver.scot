@@ -3,10 +3,21 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Phone <hr> Email</th>
-            <th>Price <hr> Distance </th>
-            <th>Type<hr> Floor</th>
-            <th>Volume <hr> Persons</th>
+            <th>Phone
+                <br> Email
+            </th>
+            <th>Price
+                <br> Distance
+            </th>
+            <th>Type
+                <br> Floor
+            </th>
+            <th>Volume
+                <br> Persons
+            </th>
+            <th>
+                Status
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -14,7 +25,7 @@
             <?php foreach ($jobs as $job) : ?>
                 <tr>
                     <td>
-                        <small> <a href="<?= base_url("order_details/$job->id") ?>"> <?= $job->trackingID ?? 0 ?></a></small>
+                        <small> <a data-tracking-id="<?= $job->trackingID ?>" class="orderDetails" href="javascript:void(0);"> <?= $job->trackingID ?? 0 ?></a></small>
                     </td>
                     <td>
                         <small><?= $job->booking_phone ?><br><?= $job->bookig_email ?></small>
@@ -27,6 +38,13 @@
                     </td>
                     <td>
                         <small><?= $job->product_volume ?> cm<sup>3</sup><br><?= $job->persons ?> Persons</small>
+                    </td>
+                    <td>
+                        <small>
+                            <span class="badge bg-label-<?= $job->status == 0 ? "warning" : ($job->status == 1 ? "success" : "danger") ?>">
+                                <?= $job->status == 0 ? "Pending" : ($job->status == 1 ? "Completed" : "Canceled") ?>
+                            </span>
+                        </small>
                     </td>
                 </tr>
             <?php endforeach; ?>

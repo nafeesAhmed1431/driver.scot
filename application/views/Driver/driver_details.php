@@ -41,40 +41,54 @@
                         </div>
                         <h5 class="pb-2 border-bottom mb-4">Details</h5>
                         <div class="info-container">
-                            <ul class="list-unstyled">
-                                <li class="mb-3">
-                                    <span class="fw-medium me-2">Username:</span>
-                                    <span><?= $driver->user_name ?></span>
-                                </li>
-                                <li class="mb-3">
-                                    <span class="fw-medium me-2">Email:</span>
-                                    <span><?= $driver->email ?></span>
-                                </li>
-                                <li class="mb-3">
-                                    <span class="fw-medium me-2">Status:</span>
-                                    <span class="badge bg-label-<?= $driver->enable_bit ? "success" : "danger" ?> me-1"><?= $driver->enable_bit ? "Active" : "Inactive" ?></span>
-                                </li>
-                                <li class="mb-3">
-                                    <span class="fw-medium me-2">Role:</span>
-                                    <span><?= $driver->sub_driver ? "Sub Driver" : "Driver" ?></span>
-                                </li>
-                                <li class="mb-3">
-                                    <span class="fw-medium me-2">Tax id:</span>
-                                    <span>Tax-8965</span>
-                                </li>
-                                <li class="mb-3">
-                                    <span class="fw-medium me-2">Mobile:</span>
-                                    <span><?= $driver->mobile_number ?></span>
-                                </li>
-                                <li class="mb-3">
-                                    <span class="fw-medium me-2">Phone:</span>
-                                    <span><?= $driver->phone_number ?></span>
-                                </li>
-                                <li class="mb-3">
-                                    <span class="fw-medium me-2">Country / City:</span>
-                                    <span><?= ucfirst($driver->country) . " / " . ucfirst($driver->city) ?></span>
-                                </li>
-                            </ul>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Username</td>
+                                        <td><?= $driver->user_name ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td><?= $driver->email ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+                                        <td>
+                                            <span class="badge bg-label-<?= $driver->enable_bit ? "success" : "danger" ?> me-1"><?= $driver->enable_bit ? "Active" : "Inactive" ?></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Role</td>
+                                        <td>
+                                            <span><?= $driver->sub_driver ? "Sub Driver" : "Driver" ?></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Role</td>
+                                        <td>
+                                            <span><?= $driver->sub_driver ? "Sub Driver" : "Driver" ?></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mobile</td>
+                                        <td>
+                                            <span><?= $driver->mobile_number ?></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone</td>
+                                        <td>
+                                            <span><?= $driver->phone_number ?></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Country / City</td>
+                                        <td>
+                                            <span><?= ucfirst($driver->country) . " / " . ucfirst($driver->city) ?></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             <div class="d-flex justify-content-center pt-3">
                                 <a href="javascript:void(0);" class="btn btn-primary me-1">Edit</a>
                                 <a href="javascript:void(0);" class="btn btn-danger">Delete</a>
