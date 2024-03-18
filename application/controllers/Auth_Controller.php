@@ -10,14 +10,14 @@ class Auth_Controller extends CI_Controller
         $this->load->model('Auth_model', 'auth');
     }
 
-    protected function load_model($alias, $table)
+    private function load_model($alias, $table)
     {
         $this->load->model("MY_Model", $alias);
         $this->$alias->set_table($table);
     }
 
 
-    function load_view($view, $data = null, $meta = null)
+    private function load_view($view, $data = null, $meta = null)
     {
         $this->load->view('auth/auth_header');
         $this->load->view("auth/$view", $data);
@@ -48,7 +48,7 @@ class Auth_Controller extends CI_Controller
             if ($res['status']) {
                 $login = login($res['user']);
                 if ($login) {
-                    $this->auth->update(['is_expired' => 1],[],[]);
+                    $this->auth->update(['is_expired' => 1], [], []);
                 }
                 echo json_encode(['status' => $login, 'redirect_url' => base_url('dashboard')]);
             } else {

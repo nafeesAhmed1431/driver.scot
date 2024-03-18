@@ -16,6 +16,6 @@ class Payment_Controller extends MY_Controller
         $data['pending'] = $this->payment->count(['payment_status' => 2]);
         $data['scheduled'] = $this->payment->count(['payment_status' => 3]);
         $data['payments'] = $this->payment->all_payments();
-        $this->load_view('Payment/index', [], $data);
+        $this->load_view('payment/index', [], $data);
     }
 }

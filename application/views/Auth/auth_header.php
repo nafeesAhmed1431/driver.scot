@@ -44,3 +44,4 @@
 </head>
 
 <body>
+    <span class="spinner-grow spinner-grow-sm text-primary ajax_loader" style="position: fixed;top: 15px;right: 15px; width: 2rem; height: 2rem; display:none;" role="status"></span>

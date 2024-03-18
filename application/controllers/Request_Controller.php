@@ -15,6 +15,6 @@ class Request_Controller extends MY_Controller
         $data['total'] = $this->request->count();
         $data['approved'] = $this->request->count(['req_status' => 1]);
         $data['pending'] = $this->request->count(['req_status' => 0]);
-        $this->load_view('Request/index', [], $data);
+        $this->load_view('request/index', [], $data);
     }
 }

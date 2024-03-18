@@ -76,6 +76,9 @@ $route['invitations'] = 'Invitation_Controller/index';
 
 // Payments Routes
 $route['payments'] = 'Payment_Controller/index';
+$route['remove_payment'] = 'Payment_Controller/remove_payment';
+$route['schedule_payment'] = 'Payment_Controller/schedule_payment';
+$route['transfer_payment'] = 'Payment_Controller/transfer_payment';
 
 // Orders Routes
 $route['order_details_modal'] = 'Order_Controller/order_details_modal';

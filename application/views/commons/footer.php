@@ -22,7 +22,7 @@
         $('#ajax_loader').hide();
     });
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
 <script src="<?= base_url('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') ?>"></script>
 <script src="<?= base_url('assets/vendor/js/menu.js') ?>"></script>
 <script src="<?= base_url('assets/vendor/libs/apex-charts/apexcharts.js') ?>"></script>
