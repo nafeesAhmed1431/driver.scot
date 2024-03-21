@@ -12,6 +12,15 @@ class MY_Controller extends CI_Controller
         $this->user = $this->session->userdata('user');
     }
 
+    protected function response($content = [], $status_code = 200, $json = true, $header = [])
+    {
+        http_response_code($status_code);
+        if (!empty($header)) foreach ($header as $key => $value) header("$key: $value");
+        header('Content-Type: application/json');
+        echo $json ? json_encode($content) : $content;
+    }
+
+
     protected function load_model($alias, $table)
     {
         $this->load->model("MY_Model", $alias);
