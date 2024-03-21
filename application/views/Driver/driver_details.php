@@ -135,20 +135,6 @@
     });
 
     function load_jobs(type) {
-        $.ajax({
-            url: `${base_url}/driver/get_jobs`,
-            dataType: 'json',
-            method: "GET",
-            data: {
-                type: type,
-                driver_id: driver_id
-            },
-            success: res => {
-                if (res.status) {
-                    $('.table_section').html(res.html);
-                }
-            }
-
-        });
+        $.get(`${base_url}/driver/get_jobs`, {type: type, driver_id: driver_id}).done(res => $('.table_section').html(res));
     }
 </script>

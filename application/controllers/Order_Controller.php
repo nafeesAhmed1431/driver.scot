@@ -13,6 +13,6 @@ class Order_Controller extends MY_Controller
     {
         $tracking_id = $this->input->get('trackingId');
         $html = $this->load->view('order/details_modal', ['order' => $this->order->row(['trackingID' => $tracking_id])], TRUE);
-        echo json_encode(['status' => true, 'html' => $html]);
+        $this->response(['status' => true, 'html' => $html]);
     }
 }

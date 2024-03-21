@@ -64,18 +64,22 @@ $route['app_auth'] = 'Auth_Controller/app_auth';
 
 // Driver Routes
 $route['drivers'] = 'Driver_Controller/index';
+$route['driver_main_content'] = 'Driver_Controller/get_content';
 $route['driver_details/(:any)'] = 'Driver_Controller/driver_details/$1';
 $route['driver/get_jobs'] = 'Driver_Controller/get_jobs';
 $route['driver_details_modal'] = 'Driver_Controller/driver_details_modal';
 
 // Request Routes
 $route['requests'] = 'Request_Controller/index';
+$route['request_main_content'] = 'Request_Controller/main_content';
 
 // Invitations Routes
 $route['invitations'] = 'Invitation_Controller/index';
+$route['invitation_main_content'] = 'Payment_Controller/get_content';
 
 // Payments Routes
 $route['payments'] = 'Payment_Controller/index';
+$route['payment_main_content'] = 'Payment_Controller/main_content';
 $route['remove_payment'] = 'Payment_Controller/remove_payment';
 $route['schedule_payment'] = 'Payment_Controller/schedule_payment';
 $route['transfer_payment'] = 'Payment_Controller/transfer_payment';
@@ -84,6 +88,6 @@ $route['transfer_payment'] = 'Payment_Controller/transfer_payment';
 $route['order_details_modal'] = 'Order_Controller/order_details_modal';
 
 
-
+// Misc
 $route['404_override'] = 'fallback_controller/not_found_fzf';
 $route['translate_uri_dashes'] = FALSE;

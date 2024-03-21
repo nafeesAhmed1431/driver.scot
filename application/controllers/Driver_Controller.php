@@ -11,12 +11,21 @@ class Driver_Controller extends MY_Controller
 
     function index()
     {
+        $this->load_view('driver/index', ['html' => $this->get_content()]);
+    }
+
+    function get_content()
+    {
         $data['drivers'] = $this->driver->all();
         $data['total'] = $this->driver->count();
         $data['active'] = $this->driver->count(['enable_bit' => 1]);
         $data['inactive'] = $this->driver->count(['enable_bit' => 0]);
-        $this->load_view('driver/index', [], $data);
-        // $this->load_view('driver/driver_details', [], ['data' => $drivers]);
+        $res = $this->load->view('driver/main_content', $data, TRUE);
+        if ($this->input->is_ajax_request()) {
+            return $this->response($res, 200, false);
+        } else {
+            return $res;
+        }
     }
 
     function driver_details($driver_id = null)
@@ -34,8 +43,8 @@ class Driver_Controller extends MY_Controller
         $type = $this->input->get('type');
         $driver_id = $this->input->get('driver_id');
         $data['jobs'] = $this->driver->jobs_by_status($type, $driver_id);
-        $data['table_title'] = ['Pending Jobs','Completed Jobs','Canceled Jobs','All Jobs'][$type];
+        $data['table_title'] = ['Pending Jobs', 'Completed Jobs', 'Canceled Jobs', 'All Jobs'][$type];
         $html = $this->load->view('Driver/driver_jobs', $data, TRUE);
-        echo  json_encode(['status' => true, 'html' => $html]);
+        $this->response($html, 200);
     }
 }

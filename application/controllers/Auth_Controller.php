@@ -50,12 +50,12 @@ class Auth_Controller extends CI_Controller
                 if ($login) {
                     $this->auth->update(['is_expired' => 1], [], []);
                 }
-                echo json_encode(['status' => $login, 'redirect_url' => base_url('dashboard')]);
+                $this->response(['status' => $login, 'redirect_url' => base_url('dashboard')]);
             } else {
-                echo json_encode($res);
+                $this->response($res);
             }
         } else {
-            echo json_encode(['status' => false, 'error' => $this->form_validation->error_array()]);
+            $this->response(['status' => false, 'error' => $this->form_validation->error_array()]);
         }
     }
 
@@ -65,9 +65,9 @@ class Auth_Controller extends CI_Controller
         $res = $this->auth->authenticate_by_token($token);
         sleep(10);
         if ($res['status']) {
-            echo json_encode(['status' => login($res['user']), 'redirect_url' => base_url('dashboard')]);
+            $this->response(['status' => login($res['user']), 'redirect_url' => base_url('dashboard')]);
         } else {
-            echo json_encode($res);
+            $this->response($res);
         }
     }
 
@@ -84,5 +84,13 @@ class Auth_Controller extends CI_Controller
     {
         logout();
         redirect('');
+    }
+
+    private function response($content = [], $status_code = 200, $json = true, $header = [])
+    {
+        http_response_code($status_code);
+        if (!empty($header)) foreach ($header as $key => $value) header("$key: $value");
+        header('Content-Type: application/json');
+        echo $json ? json_encode($content) : $content;
     }
 }
